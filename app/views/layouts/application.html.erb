@@ -20,9 +20,9 @@
                 <li class="divider-vertical"></li>
                 <li><a href="#">Contact</a></li>
               </ul>
-		    <form class="navbar-search pull-right">
-		    <input type="text" class="search-query" placeholder="Search Reviews">
-		    </form>
+              <%= form_tag({:action => 'search'}, :class => 'navbar-search pull-right') do %>
+                <%= text_field_tag 'searchFor', nil, :class => "search-query", :placeholder => "Search Reviews" %>
+              <% end %>
             </div>
           </div>
         </div><!-- /.navbar -->
@@ -42,11 +42,7 @@
     		<p style="color: green"><%= flash[:notice] %></p>
 			<%= yield %>
 
-    		<%= form_tag :action => 'search' do %>
-	    		<label for="searchFor">Search for review:</label>
-	    		<%= text_field_tag :searchFor %>
-	    		<%= submit_tag "Find" %>
-    		<% end %>
+
 		</div>
 
 	    <div class="span3">
@@ -54,6 +50,7 @@
 	    	The latest restaurant news<br />
 	    </div> <!-- END NEWS-->
 	</div>
+  <hr>
     <div class="footer">
     	<a href="mailto:myuser@myhost.com">Contact Us</a> | &copy;2012 Your Name
     </div> <!-- END FOOTER-->
