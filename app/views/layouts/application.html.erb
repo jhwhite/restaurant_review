@@ -31,13 +31,14 @@
 	              <li class="nav-header">Sidebar</li>
 	              <li><%= link_to 'Login to post', { :action => :login} %></li>
 	              <li><%= link_to 'Register for free', {:action => :register} %></li>
-	              <li><%= link_to 'Post a new review', new_review_path %></li>
+	              <li></li>
 	            </ul>
           	</div><!--/.well -->
         </div><!--/span-->
     	<div class="span6">
     		<p style="color: green"><%= flash[:notice] %></p>
 			<%= yield %>
+			<%= link_to 'Post a new review', new_review_path, class: "btn btn-button" %>
 		</div>
 
 	    <div class="span3">
