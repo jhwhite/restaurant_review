@@ -3,4 +3,5 @@
        <%= link_to review.title, review %>  submitted by <%= review.poster %><br />
        <%= link_to time_ago_in_words(review.created_at) + " ago", review %> 
        <%= review.article %><br /><br />
+       <%= link_to 'Post a new review', new_review_path, class: "btn btn-success" %>
     <% end %>
