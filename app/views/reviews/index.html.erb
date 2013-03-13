@@ -1,0 +1,6 @@
+<h1>Restaurant reviews</h1>
+    <% for review in @reviews %>
+       <%= link_to review.title, review %>  submitted by <%= review.poster %><br />
+       <%= link_to time_ago_in_words(review.created_at) + " ago", review %> 
+       <%= review.article %><br /><br />
+    <% end %>
