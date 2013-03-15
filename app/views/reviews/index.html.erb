@@ -1,12 +1,14 @@
-<h1>Restaurant reviews</h1>
+<div class="page-header">
+	<h1>Restaurant reviews</h1>
+</div>
+
     <% for review in @reviews %>
+    <div class="status">
        <%= link_to review.title, review %> <br /> 
        <%= review.article %><br />
-
-
-       
        <%= link_to time_ago_in_words(review.created_at) + " ago", review %> 
        submitted by <%= review.poster %><br /><br />
-      
+   </div>
     <% end %>
-     <%= link_to 'Post a new review', new_review_path, class: "btn btn-primary" %>
+
+<%= link_to 'Post a new review', new_review_path, class: "btn btn-primary" %>
