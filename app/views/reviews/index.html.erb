@@ -7,5 +7,6 @@
        
        <%= link_to time_ago_in_words(review.created_at) + " ago", review %> 
        submitted by <%= review.poster %><br /><br />
-       <%= link_to 'Post a new review', new_review_path, class: "btn btn-success" %>
+      
     <% end %>
+     <%= link_to 'Post a new review', new_review_path, class: "btn btn-success" %>

@@ -1,7 +1,7 @@
 <h2><%= @review.title %></h2>
 <p>
-  Posted by:<%= @review.poster %>
-  on <%= @review.date %>
+  Posted by: <%= @review.poster %>
+  <%= time_ago_in_words(@review.created_at) %>
 </p>
 <p>
   <b>Review:</b><br />
@@ -9,3 +9,20 @@
 </p>
 <%= link_to 'Edit review', edit_review_path(@review) %> |
 <%= link_to 'Back to main menu', reviews_path %>
+
+<p>
+   <h4>Comments:</h4>
+   <% for comment in @review.comments.reverse %>
+   posted by: <%= comment.poster %><br />
+   <%= time_ago_in_words(comment.created_at) %> ago<br />
+   <%= comment.comment %><br /><br />
+   <% end %>
+</p>
+<hr />
+<h2>Submit new comment:</h2>
+<%= form_tag :action => 'comment', :id => @review do %>
+<strong>Poster: </strong><%= text_field "comment", "poster" %><br /><br />
+<strong>Comment:</strong><br />
+<%= text_area "comment", "comment", :rows => 5 %><br />
+<%= submit_tag "Comment" %>
+<% end %>

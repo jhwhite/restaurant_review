@@ -30,30 +30,35 @@
 	<div class="row">
 		<div class="span3">
 			<div class="well sidebar-nav">
-	            <ul class="nav nav-list">
-	              <li class="nav-header">Sidebar</li>
-	              <li><%= link_to 'Login to post', { :action => :login} %></li>
-	              <li><%= link_to 'Register for free', {:action => :register} %></li>
-	              <li></li>
-	            </ul>
-          	</div><!--/.well -->
-        </div><!--/span-->
+        <ul class="nav nav-list">
+          <li class="nav-header">Sidebar</li>
+          <li><%= link_to 'Login to post', { :action => :login} %></li>
+          <li><%= link_to 'Register for free', {:action => :register} %></li>
+          <li></li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+
     	<div class="span6">
-    		<p style="color: green"><%= flash[:notice] %></p>
-			<%= yield %>
-
-
-		</div>
+        <p style="color: green"><%= flash[:notice] %></p>
+        <%= yield %>
+        <i class="icon-search"></i>
+		  </div>
 
 	    <div class="span3">
 	    	<h2>What's cookin'</h2><br />
 	    	The latest restaurant news<br />
+        <%= render "news" %>
 	    </div> <!-- END NEWS-->
 	</div>
+
   <hr>
+
     <div class="footer">
     	<a href="mailto:myuser@myhost.com">Contact Us</a> | &copy;2012 Your Name
     </div> <!-- END FOOTER-->
+    
 	</div> <!-- END CONTAINER -->
+
 </body>
 </html>
