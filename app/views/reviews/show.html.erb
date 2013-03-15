@@ -21,8 +21,10 @@
 <hr />
 <h2>Submit new comment:</h2>
 <%= form_tag :action => 'comment', :id => @review do %>
-<strong>Poster: </strong><%= text_field "comment", "poster" %><br /><br />
-<strong>Comment:</strong><br />
-<%= text_area "comment", "comment", :rows => 5 %><br />
-<%= submit_tag "Comment" %>
+	<strong>Poster: </strong><br />
+	<%= text_field "comment", "poster" %><br /><br />
+
+	<strong>Comment:</strong><br />
+	<%= text_area "comment", "comment", :rows => 5 %><br />
+	<%= submit_tag "Comment", :class => "btn" %>
 <% end %>

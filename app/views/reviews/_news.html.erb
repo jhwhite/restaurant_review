@@ -2,7 +2,7 @@
     <% news = News.order('created_at desc').limit(2) %>
     <% for item in news %>
       <b><%= item.title %></b><br />
-      <%= time_ago_in_words(item.created_at) %> ago<br />
+      posted about <%= time_ago_in_words(item.created_at) %> ago<br />
       <%= item.article %><br /><br />
     <% end %>
     </p>
