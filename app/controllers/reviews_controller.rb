@@ -85,4 +85,10 @@ class ReviewsController < ApplicationController
         Review.find(params[:id]).comments.create(params[:comment])
         redirect_to :action => "show", :id => params[:id]
   end  
+
+  def search
+    pattern = params[:searchFor]
+    pattern = "%" + pattern + "%"
+    @reviews = Review.where("title like ?", pattern)
+  end
 end
