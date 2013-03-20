@@ -87,8 +87,9 @@ class ReviewsController < ApplicationController
   end  
 
   def search
-    pattern = params[:searchFor]
+    pattern = params[:searchFor].downcase
     pattern = "%" + pattern + "%"
-    @reviews = Review.where("title like ?", pattern)
+    #@reviews = Review.find_by_sql["SELECT * FROM reviews WHERE UPPER(title) "]
+    @reviews = Review.where("LOWER(title) like ?", pattern)
   end
 end
