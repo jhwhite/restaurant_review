@@ -23,13 +23,19 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/new
   # GET /reviews/new.json
-  def new
-    @review = Review.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @review }
-    end
+  def new
+      if (session[:user_id])
+       @review = Review.new
+        respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @review }
+        end
+      else
+         flash[:notice] = "Please log on to post"
+         redirect_to '/reviews'
+
+      end
   end
 
   # GET /reviews/1/edit
@@ -92,4 +98,38 @@ class ReviewsController < ApplicationController
     #@reviews = Review.find_by_sql["SELECT * FROM reviews WHERE UPPER(title) "]
     @reviews = Review.where("LOWER(title) like ?", pattern)
   end
+
+
+
+  def newuser
+     respond_to do |format|
+       user = User.new
+       user.userid = params[:userid]
+       user.password = params[:password]
+       user.fullname = params[:fullname]
+       user.email = params[:email]
+       if user.save
+          session[:user_id] = user.userid
+          flash[:notice] = 'New User ID was successfully created.'
+        else
+          flash[:notice] = 'Sorry, User ID already exists.' 
+        end
+        format.html {redirect_to '/reviews' }   
+
+      end
+  end
+
+  def validate
+  
+  respond_to do |format|
+    user = User.authenticate(params[:userid], params[:password])
+    if user
+      session[:user_id] = user.userid
+      flash[:notice] = 'User successfully logged in'
+    else
+      flash[:notice] = 'Invalid user/password'
+    end
+    format.html {redirect_to '/reviews' }
+  end  
+end
 end
